@@ -7,15 +7,24 @@ lvim.plugins = {
   {
     "lunarvim/colorschemes",
     config = function()
-      lvim.colorscheme = "catppuccin-frappe"
     end
   },
+  {"morhetz/gruvbox"},
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "catppuccin"
+      lvim.colorscheme = "catppuccin-frappe"
+  -- ensure background color is controlled by terminal (to let tmux change it depending on focus)
+    vim.cmd [[
+      highlight Normal       guibg=NONE ctermbg=NONE
+      highlight NormalNC     guibg=NONE ctermbg=NONE
+      highlight VertSplit    guibg=NONE ctermbg=NONE
+      highlight SignColumn   guibg=NONE ctermbg=NONE
+      highlight LineNr       guibg=NONE ctermbg=NONE
+      highlight EndOfBuffer  guibg=NONE ctermbg=NONE
+    ]]
     end
   },
   {
@@ -36,6 +45,12 @@ lvim.plugins = {
 
 vim.wo.relativenumber = true
 vim.wo.number = true
+
+vim.keymap.set("n", "<leader>yy", vim.lsp.buf.hover, {}) 
+vim.keymap.set("n", "<c-e>", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<c-n>", vim.lsp.buf.implementation, {})
+vim.keymap.set("n", "<m-c-e>", vim.lsp.buf.references, {})
+vim.keymap.set({ "n", "v" }, "<leader>s", vim.lsp.buf.code_action, {})
 
 -- PROGRAMMING: Add comma and semicolon to the end of the current line
 vim.keymap.set('n', 'K', 'mzJ`z', { desc = 'Join lines' })
