@@ -42,7 +42,7 @@ vim.keymap.set("n", "<c-n>", vim.lsp.buf.definition, {})
 --vim.keymap.set("n", "<c-n>", vim.lsp.buf.implementation, {}) not working anyone atm
 vim.keymap.set("n", "<m-c-n>", vim.lsp.buf.references, {})
 vim.keymap.set({ "n", "v" }, "<C-space>", vim.lsp.buf.code_action, {})
-vim.keymap.set({ "n" }, "<leader>s", vim.lsp.buf.hover, {})
+vim.keymap.set({ "n" }, "<C-l>", vim.lsp.buf.hover, {})
 
 -- PROGRAMMING: Add comma and semicolon to the end of the current line
 vim.keymap.set('n', 'L', 'mzJ`z', { desc = 'Join lines' })
